@@ -1,0 +1,13 @@
+apiVersion: contour.heptio.com/v1beta1
+kind: IngressRoute
+metadata:
+  name: traffic-router-ingress-route
+spec:
+  virtualhost:
+    fqdn: music-ir.qtphack.com
+  routes:
+    - match: /spring-app
+      prefixRewrite: "/"
+      services:
+        - name: spring-app-service
+          port: 8080
